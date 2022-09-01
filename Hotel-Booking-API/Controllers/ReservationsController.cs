@@ -24,11 +24,10 @@ namespace Hotel_Booking_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Reservation>>> GetReservation()
         {
-          if (_context.Reservation == null)
-          {
-              return NotFound();
-          }
-            return await _context.Reservation.ToListAsync();
+            //Eager Loading Based off Foriegn Key 
+            //Look Re-Do Migration
+        
+            return await _context.Reservation.Include(e => e.roomType).ToListAsync();
         }
 
         // GET: api/Reservations/5
